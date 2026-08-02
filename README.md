@@ -96,14 +96,22 @@ Simply connect your Git repository to Vercel with:
 
 ## 📝 Patch Notes
 
-### 📦 `v0.1` — Initial Release (Current Version)
+### 📦 `v0.2` — Loading Screen & Image Preloading (Current Version)
+- **Interactive Themed Loading Screen**:
+  - Preloads all high-definition character cutouts and background images (`Image()` promise cache).
+  - Displays a dynamic `0%` to `100%` progress bar with smooth timing ticks.
+- **Diagonal Shutter Reveal Animation**:
+  - Custom dual diagonal shutter panels (`clip-path: polygon(0 0, 58% 0, 42% 100%, 0 100%)` and `polygon(58% 0, 100% 0, 100% 100%, 42% 100%)`).
+  - Dual-toned MARVEL logo gradient matching theme colors (`linear-gradient(90deg, #ffffff 52%, #111520 52%)`).
+  - Skew-tile "ENTER" button triggering a 900ms smooth cubic-bezier shutter exit (`cubic-bezier(0.85, 0, 0.15, 1)`).
+
+### 📦 `v0.1` — Initial Release
 - **Initial Showcase Architecture**:
   - Implemented 7-layer 3D spatial stage with real-time cursor parallax.
   - Added Spider-Man, Captain America, and Black Panther hero states.
 - **Theme & Styling**:
   - Configured OKLCH theme tokens for Marvel Red, Sentinel Navy, and Wakandan Purple.
   - Added 700ms cubic-bezier transition for theme switching.
-  - Implemented custom CSS utilities (`stage`, `layer-3d`, `wedge-panel`, `wedge-photo`, `skew-tile`, `animate-hero-enter`, `animate-text-enter`).
 - **Visual Polish**:
   - Added dark atmospheric overlays (`bg-black/45 mix-blend-multiply` + gradient) over background photo slabs for crisp character cutout pop.
 - **Architecture & Tooling**:

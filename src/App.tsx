@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Facebook, Instagram, Youtube, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LoadingScreen } from './components/LoadingScreen';
 
 import spidermanCutoutAsset from './assets/spiderman-cutout.asset.json';
 import spidermanBgAsset from './assets/spiderman-bg.asset.json';
@@ -45,6 +46,12 @@ const heroes: HeroState[] = [
     cutout: pantherCutoutAsset.url,
     backdrop: pantherBgAsset.url,
   },
+];
+
+const allHeroImages = [
+  '/images/avengers-icon.png',
+  '/images/tools.png',
+  ...heroes.flatMap((h) => [h.cutout, h.backdrop]),
 ];
 
 export function App() {
@@ -97,12 +104,14 @@ export function App() {
   };
 
   return (
-    <div
-      data-hero={currentHero.id}
-      className="relative w-screen h-screen overflow-hidden stage theme-transition bg-[var(--background)] text-[var(--foreground)] select-none"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
+    <>
+      <LoadingScreen imagesToPreload={allHeroImages} />
+      <div
+        data-hero={currentHero.id}
+        className="relative w-screen h-screen overflow-hidden stage theme-transition bg-[var(--background)] text-[var(--foreground)] select-none"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
       {/* z=0.2 — Giant ghost "MARVEL" wordmark */}
       <div
         className="layer-3d absolute left-[2vw] top-1/2 -translate-y-1/2 pointer-events-none select-none z-0"
@@ -263,7 +272,6 @@ export function App() {
               key={idx}
               type="button"
               onClick={() => setHeroIndex(idx % heroes.length)}
-              aria-label={`Select character indicator ${idx + 1}`}
               className={`h-[3px] bg-[var(--foreground)] rounded-full transition-all duration-500 cursor-pointer ${
                 isActive ? 'w-10 opacity-100' : 'w-6 opacity-45 hover:opacity-75'
               }`}
@@ -272,7 +280,8 @@ export function App() {
         })}
       </div>
     </div>
-  );
+  </>
+);
 }
 
 export default App;

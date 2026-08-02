@@ -83,6 +83,15 @@ Featuring real-time 3D cursor parallax depth tracking, custom geometric wedge cl
    npm run build
    ```
 
+### Deploying to Vercel / CI
+The repository includes pre-configured `.npmrc`, `vercel.json`, and `package.json` overrides to handle peer dependency resolutions automatically during Vercel builds.
+
+Simply connect your Git repository to Vercel with:
+- **Framework Preset**: Vite
+- **Root Directory**: `codebase` (or project root if deploying codebase directory directly)
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+
 ---
 
 ## 📝 Patch Notes

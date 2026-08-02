@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.19 0.03 265);
+    --ghost-text: oklch(0.96 0.004 260);
+    --radius: 0.25rem;
+    --primary: oklch(0.55 0.23 27.5);
+    --wedge: oklch(0.55 0.23 27.5);
+  }
+
+  [data-hero="spiderman"] {
+    --primary: oklch(0.55 0.23 27.5);
+    --wedge: oklch(0.55 0.23 27.5);
+  }
+
+  [data-hero="captain"] {
+    --primary: oklch(0.27 0.055 265);
+    --wedge: oklch(0.27 0.055 265);
+  }
+
+  [data-hero="panther"] {
+    --primary: oklch(0.48 0.22 300);
+    --wedge: oklch(0.48 0.22 300);
+  }
+
+  * {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+.theme-transition {
+  transition: color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              fill 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              stroke 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility stage {
+  perspective: 1400px;
+  transform-origin: 60% 50%;
+}
+
+@utility layer-3d {
+  transform-style: preserve-3d;
+  transition: transform 120ms cubic-bezier(0.1, 0.4, 0.2, 1);
+}
+
+@utility wedge-panel {
+  clip-path: polygon(38% 0, 100% 0, 100% 100%, 8% 100%);
+}
+
+@utility wedge-photo {
+  clip-path: polygon(22% 0, 100% 0, 78% 100%, 0 100%);
+}
+
+@utility skew-tile {
+  clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%);
+}
+
+@keyframes heroEnterKeyframes {
+  0% {
+    opacity: 0;
+    transform: translate3d(60px, 20px, -120px) rotateY(-8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+  }
+}
+
+@keyframes textEnterKeyframes {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-enter {
+  animation: heroEnterKeyframes 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-text-enter {
+  animation: textEnterKeyframes 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
